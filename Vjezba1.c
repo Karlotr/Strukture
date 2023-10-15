@@ -26,10 +26,13 @@ int main()
 	FILE* fp;
 	fp = fopen("studenti.txt", "r");
 	while (!feof(fp)) {
-		if (fgetc(fp) == '\n') {
+		char c = fgetc(fp);
+		if (c == '\n' || c == EOF) {
+			printf("    %c    ", c);
 			brojStudenata++;
 		}
 	}
+	
 	printf("broj studenata je %d", brojStudenata);
 	fclose(fp);
 	free(student);
