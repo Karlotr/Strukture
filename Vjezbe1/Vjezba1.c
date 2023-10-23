@@ -1,40 +1,70 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
+#define FILE_NOT_OPENED (-1)
+#define MAX_LINE (1024)
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
-/* Napisati program koji prvo procita koliko redaka ima datoteka, tj. koliko ima studenata
-zapisanih u datoteci. Nakon toga potrebno je dinamicki alocirati prostor za niz struktura
-studenata (ime, prezime, bodovi) i ucitati iz datoteke sve zapise. Na ekran ispisati ime,
-prezime, apsolutni i relativni broj bodova.
-Napomena: Svaki redak datoteke sadrzi ime i prezime studenta, te broj bodova na kolokviju.
-relatvan_br_bodova = br_bodova/max_br_bodova*100
-*/
+typedef struct Student Stud;
+struct Student{
+    char ime[30];
+    char prezime[30];
+    int bodovi;
+};
 
-typedef struct {
-	char ime[20];
-	char prezime[20];
-	int bodovi;
-}studenti;
 
-int main()
-{
-	studenti* student;
-	int brojStudenata = 0;
 
-	student = (studenti*)malloc(sizeof(studenti) * 10);
+int CountStudents(FILE *file);
+int InputStudents(FILE *file, int n, Stud x[]);
+int Print(Stud x[], int n);
+float rel_br_bod(int n);
 
-	FILE* fp;
-	fp = fopen("studenti.txt", "r");
-	while (!feof(fp)) {
-		char c = fgetc(fp);
-		if (c == '\n' || c == EOF) {
-			printf("    %c    ", c);
-			brojStudenata++;
-		}
-	}
-	
-	printf("broj studenata je %d", brojStudenata);
-	fclose(fp);
-	free(student);
-	return 0;
+int main(){
+    FILE *f;
+    f = fopen("stud.txt", "r");
+    int n = CountStudents(f);
+    fclose(f);
+    Stud *x = (Stud*)malloc(sizeof(Stud)*n);
+    
+    f = fopen("stud.txt", "r");
+    if(InputStudents(f,n,x) == 0) printf("Nema studenata"); 
+    fclose(f);
+    Print(x, n);
+    free(x);
+    return 0;
+}
+
+float rel_br_bod(int n){
+    return (float)n/30*100;
+}
+
+int Print(Stud x[], int n){
+    int i;
+    for(i = 0; i < n; i++){
+        printf("\n%s %s %d %.2f", x[i].ime, x[i].prezime, x[i].bodovi, rel_br_bod(x[i].bodovi));
+    }
+    return 0;
+}
+
+int CountStudents(FILE *file){
+    int br = 1;
+    int brchar = 0;
+    char s = '\0';
+    while(s != EOF){
+        brchar++;
+        s = fgetc(file);
+        if (s == '\n')
+            br++;
+    }
+    if (brchar == 1) br = 0;
+    return br;
+}
+
+int InputStudents(FILE *file, int n, Stud x[]){
+    if (n<1) return 0;
+    int i;
+    for(i = 0; i < n; i++){
+        fscanf(file, "%s %s %d", x[i].ime, x[i].prezime, &x[i].bodovi);
+    }
+    return 1;
 }
