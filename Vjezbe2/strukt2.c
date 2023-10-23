@@ -19,6 +19,7 @@ int AddEnd(Poz P, char name[30],char surname[30],int god);
 Poz Find(Poz P, char surname[30]);
 Poz FindPrev(Poz P, char surname[30]);
 int Delete(Poz PrevLoc);
+int DeletePerson(Poz P, char name[]);
 
 int main(){
     Osoba Head;
@@ -30,6 +31,12 @@ int main(){
     Print(Head.next);
 
     return 0;
+}
+
+int DeletePerson(Poz P, char surname[]){
+	Poz temp = FindPrev(Poz P, surname);
+	Delete(temp);
+	return 0;
 }
 
 int Delete(Poz P) {
