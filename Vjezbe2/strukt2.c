@@ -19,6 +19,7 @@ typedef struct  _Person{
 int Add(Poz P, char name[MAX_SIZE],char surname[MAX_SIZE],int god);
 //Dodavanje na pocetak
 int Print(Poz P);
+<<<<<<< HEAD
 //Printanje cijele liste
 int AddEnd(Poz P, char name[MAX_SIZE],char surname[MAX_SIZE],int god);
 //Dodavanje na kraj
@@ -31,6 +32,13 @@ int DeleteByPosition(Poz PrevLoc);
 int DeletePerson(Poz P, char surname[MAX_SIZE]);
 //Brisanje unosom prezimena
 Poz AllocateMemory();
+=======
+int AddEnd(Poz P, char name[30],char surname[30],int god);
+Poz Find(Poz P, char surname[30]);
+Poz FindPrev(Poz P, char surname[30]);
+int Delete(Poz PrevLoc);
+int DeletePerson(Poz P, char name[]);
+>>>>>>> 88c04baa85d17a935bcd251be8c40642b4467838
 
 int main(){
     _person Head = { .next = NULL, .name = {0},.surname = {0}, .god = 0 };
@@ -44,6 +52,7 @@ int main(){
     return 0;
 }
 
+<<<<<<< HEAD
 Poz AllocateMemory(){
     Poz q = NULL;
     q = (Poz)malloc(sizeof(_person));
@@ -62,6 +71,15 @@ int DeletePerson(Poz P, char surname[MAX_SIZE]){
 }
 
 int DeleteByPosition(Poz P) {
+=======
+int DeletePerson(Poz P, char surname[]){
+	Poz temp = FindPrev(Poz P, surname);
+	Delete(temp);
+	return 0;
+}
+
+int Delete(Poz P) {
+>>>>>>> 88c04baa85d17a935bcd251be8c40642b4467838
      Poz temp;
      if (P != NULL)
      {
