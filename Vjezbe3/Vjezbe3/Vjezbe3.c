@@ -51,7 +51,7 @@ int main(){
 
     int toggle = 1;
     int odabir = 0;
-    char name[MAX_SIZE], surname[MAX_SIZE], target[MAX_SIZE];
+    char name[MAX_SIZE] = {0}, surname[MAX_SIZE] = {0}, target[MAX_SIZE] = {0};
     int god = 0;
     while (toggle){
         printf("Odaberite koju radnju zelite: \n 1. Dodavanje na pocetak\n 2. Dodavanje na kraj\n 3. Dodavanje nakon\n 4. Dodavanje ispred,\n 5. Brisanje\n 6. Ispis liste\n7. Zavrsi \n");
@@ -100,7 +100,7 @@ int main(){
         }else{
             printf("Pogresan unos pokusajte opet \n");
         }
-        printf("------------------------------------------------------------------------\n------------------------------------------------------------------------\n");
+        printf("\n------------------------------------------------------------------------\n------------------------------------------------------------------------\n");
     }
 
 
