@@ -41,12 +41,68 @@ int WriteInFile(Poz P);
 int main(){
     _person Head = { .next = NULL, .name = {0},.surname = {0}, .god = 0 };
 
-    Add(&Head, "toni", "radanovic", 2003);
-    Add(&Head, "karlo", "trogrlic", 2003);
-    AddEnd(&Head, "petar", "metar", 2003);
-    AddBefore(&Head, "trogrlic", "sime", "jarun", 2002);
-    Print(Head.next);
-	WriteInFile(Head.next);
+
+    // Add(&Head, "toni", "radanovic", 2003);
+    // Add(&Head, "karlo", "trogrlic", 2003);
+    // AddEnd(&Head, "petar", "metar", 2003);
+    // AddBefore(&Head, "trogrlic", "sime", "jarun", 2002);
+    // Print(Head.next);
+	// WriteInFile(Head.next);
+
+    int toggle = 1;
+    int odabir = 0;
+    char name[MAX_SIZE], surname[MAX_SIZE], target[MAX_SIZE];
+    int god = 0;
+    while (toggle){
+        printf("Odaberite koju radnju zelite: \n 1. Dodavanje na pocetak\n 2. Dodavanje na kraj\n 3. Dodavanje nakon\n 4. Dodavanje ispred,\n 5. Brisanje\n 6. Ispis liste\n7. Zavrsi \n");
+        scanf("%d", &odabir);
+        if (odabir >= 1 && odabir <= 7){
+            switch (odabir)
+            {
+            case 1:
+                printf("format: IME PREZIME GODINA\n");
+                scanf("%s %s %d", name,surname,&god);
+                Add(&Head, name, surname, god);
+                break;
+            case 2:
+                printf("format: IME PREZIME GODINA\n");
+                scanf("%s %s %d", name,surname,&god);
+                AddEnd(&Head, name, surname, god);
+                break;
+            case 3:
+                printf("format: PREZIME_METE IME PREZIME GODINA\n");
+                scanf("%s %s %s %d", target,name,surname,&god);
+                AddAfter(&Head,target, name, surname, god);
+                break;
+            case 4:
+                printf("format: PREZIME_METE IME PREZIME GODINA\n");
+                scanf("%s %s %s %d", target,name,surname,&god);
+                AddBefore(&Head,target, name, surname, god);
+                break;
+            case 5:
+                printf("format: PREZIME\n");
+                scanf("%s", target);
+                DeletePerson(&Head, target);
+                break;
+            case 6:
+                Print(Head.next);
+                break;
+            case 7:
+                printf("Program zavrsen");
+                toggle = 0;
+                break;
+            
+            default:
+                break;
+
+            }
+        
+        }else{
+            printf("Pogresan unos pokusajte opet \n");
+        }
+        printf("------------------------------------------------------------------------\n------------------------------------------------------------------------\n");
+    }
+
 
     return 0;
 }

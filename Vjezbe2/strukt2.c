@@ -19,45 +19,84 @@ typedef struct  _Person{
 int Add(Poz P, char name[MAX_SIZE],char surname[MAX_SIZE],int god);
 //Dodavanje na pocetak
 int Print(Poz P);
-<<<<<<< HEAD
 //Printanje cijele liste
 int AddEnd(Poz P, char name[MAX_SIZE],char surname[MAX_SIZE],int god);
 //Dodavanje na kraj
 Poz Find(Poz P, char surname[MAX_SIZE]);
-//Traženje po prezimenu
+//Trazenje po prezimenu
 Poz FindPrev(Poz P, char surname[MAX_SIZE]);
-//Traženje prethodnog po prezimenu
+//Trazenje prethodnog po prezimenu
 int DeleteByPosition(Poz PrevLoc);
 //Brisanje unosom pozicije prethodnika
 int DeletePerson(Poz P, char surname[MAX_SIZE]);
 //Brisanje unosom prezimena
 Poz AllocateMemory();
-=======
-int AddEnd(Poz P, char name[30],char surname[30],int god);
-Poz Find(Poz P, char surname[30]);
-Poz FindPrev(Poz P, char surname[30]);
-int Delete(Poz PrevLoc);
-int DeletePerson(Poz P, char name[]);
->>>>>>> 88c04baa85d17a935bcd251be8c40642b4467838
+//Alociranje memorije
 
 int main(){
     _person Head = { .next = NULL, .name = {0},.surname = {0}, .god = 0 };
 
-    Add(&Head, "toni", "radanovic", 2003);
-    Add(&Head, "karlo", "trogrlic", 2003);
-    AddEnd(&Head, "petar", "metar", 2003);
-    DeletePerson(&Head, "trogrlic");
-    Print(Head.next);
+
+    // Add(&Head, "toni", "radanovic", 2003);
+    // Add(&Head, "karlo", "trogrlic", 2003);
+    // AddEnd(&Head, "petar", "metar", 2003);
+    // AddBefore(&Head, "trogrlic", "sime", "jarun", 2002);
+    // Print(Head.next);
+	// WriteInFile(Head.next);
+
+    int toggle = 1;
+    int odabir = 0;
+    char name[MAX_SIZE], surname[MAX_SIZE], target[MAX_SIZE];
+    int god = 0;
+    while (toggle){
+        printf("Odaberite koju radnju zelite: \n 1. Dodavanje na pocetak\n 2. Dodavanje na kraj\n 3. Brisanje\n 4. Ispis liste\n 5. Zavrsi \n");
+        scanf("%d", &odabir);
+        if (odabir >= 1 && odabir <= 5){
+            switch (odabir)
+            {
+            case 1:
+                printf("format: IME PREZIME GODINA\n");
+                scanf("%s %s %d", name,surname,&god);
+                Add(&Head, name, surname, god);
+                break;
+            case 2:
+                printf("format: IME PREZIME GODINA\n");
+                scanf("%s %s %d", name,surname,&god);
+                AddEnd(&Head, name, surname, god);
+                break;
+            case 3:
+                printf("format: PREZIME\n");
+                scanf("%s", target);
+                DeletePerson(&Head, target);
+                break;
+            case 4:
+                Print(Head.next);
+                break;
+            case 5:
+                printf("Program zavrsen");
+                toggle = 0;
+                break;
+            
+            default:
+                break;
+
+            }
+        
+        }else{
+            printf("Pogresan unos pokusajte opet \n");
+        }
+        printf("------------------------------------------------------------------------\n------------------------------------------------------------------------\n");
+    }
+
 
     return 0;
 }
 
-<<<<<<< HEAD
 Poz AllocateMemory(){
     Poz q = NULL;
     q = (Poz)malloc(sizeof(_person));
     if (!q){
-        printf("Neuspješna alokacija memorije");
+        printf("Neuspjesna alokacija memorije");
         return NULL;
     }
     return q;
@@ -71,15 +110,6 @@ int DeletePerson(Poz P, char surname[MAX_SIZE]){
 }
 
 int DeleteByPosition(Poz P) {
-=======
-int DeletePerson(Poz P, char surname[]){
-	Poz temp = FindPrev(Poz P, surname);
-	Delete(temp);
-	return 0;
-}
-
-int Delete(Poz P) {
->>>>>>> 88c04baa85d17a935bcd251be8c40642b4467838
      Poz temp;
      if (P != NULL)
      {
