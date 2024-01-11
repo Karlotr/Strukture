@@ -1,0 +1,6 @@
+﻿  Vjezbe2.c
+C:\Users\karlo\Desktop\Strukture\Vjezbe2\Vjezbe2\Vjezbe2.c(136): warning C4716: 'DeletePerson': must return a value
+C:\Users\karlo\Desktop\Strukture\Vjezbe2\Vjezbe2\Vjezbe2.c(179): warning C4716: 'AddEnd': must return a value
+C:\Users\karlo\Desktop\Strukture\Vjezbe2\Vjezbe2\Vjezbe2.c(190): warning C4716: 'Add': must return a value
+C:\Users\karlo\Desktop\Strukture\Vjezbe2\Vjezbe2\Vjezbe2.c(198): warning C4716: 'Print': must return a value
+  Vjezbe2.vcxproj -> C:\Users\karlo\Desktop\Strukture\Vjezbe2\x64\Debug\Vjezbe2.exe

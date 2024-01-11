@@ -1,10 +1,18 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
+#define ALLOCATION_ERROR (1)
+
 #include <stdio.h>
 #include <stdlib.h>
 
+
+//8. Napisati program koji omogućava rad s binarnim stablom pretraživanja.Treba
+//omogućiti unošenje novog elementa u stablo, ispis elemenata(inorder, preorder, postorder i
+//    level order), brisanje i pronalaženje nekog elementa.
+
+
+
 typedef struct Node Node;
 typedef Node* Position;
-
 struct Node {
     int element;
     Position left;
@@ -26,8 +34,8 @@ int main()
     root = calloc(1, sizeof(Node));
 
     if (root == NULL) {
-        printf("Error allocating memory for the root node!\n");
-        return 1;
+        printf("Error allocating memory\n");
+        return ALLOCATION_ERROR;
     }
 
     root->left = NULL;
@@ -37,27 +45,27 @@ int main()
 
     while (1) {
         printf("\nMenu:\n");
-        printf("1 - Insert a new element into the tree\n");
+        printf("1 - Insert element into the tree\n");
         printf("2 - Print elements of the tree\n");
-        printf("3 - Delete an element\n");
-        printf("4 - Find an element\n");
+        printf("3 - Delete element\n");
+        printf("4 - Find element\n");
         printf("5 - Exit\n");
 
         int choice = 0;
-        printf("Enter the menu option:");
+        printf("Choose:");
         scanf("%d", &choice);
 
         if (choice == 1) {
             int newElement = 0;
-            printf("Enter the new element:");
+            printf("Enter element:");
             scanf("%d", &newElement);
             addNode(root, newElement);
         }
         else if (choice == 2) {
             printf("\nPrint menu:\n");
-            printf("1 - In-order\n");
-            printf("2 - Pre-order\n");
-            printf("3 - Post-order\n");
+            printf("1 - In order\n");
+            printf("2 - Pre order\n");
+            printf("3 - Post order\n");
             printf("4 - Level order\n");
 
             int printChoice = 0;
@@ -78,18 +86,18 @@ int main()
                 printLevelOrder(root);
                 break;
             default:
-                printf("Error: Invalid choice!\n");
+                printf("Invalid choice\n");
             }
         }
         else if (choice == 3) {
             int element = 0;
-            printf("Enter the element you want to delete:");
+            printf("Enter the element to delete:");
             scanf("%d", &element);
             deleteElement(root, element);
         }
         else if (choice == 4) {
             int element = 0;
-            printf("Enter the element you want to find:");
+            printf("Enter the element to find:");
             scanf("%d", &element);
             findElement(root, element);
         }
@@ -98,7 +106,7 @@ int main()
             break;
         }
     }
-
+    free(root);
     return 0;
 }
 
@@ -106,8 +114,7 @@ Position addNode(Position root, int newElement) {
     if (root == NULL) {
         root = (Position)calloc(1, sizeof(Node));
         if (root == NULL) {
-            printf("Error allocating memory for a new element!\n");
-            return NULL;
+            return ALLOCATION_ERROR;
         }
         root->element = newElement;
         root->left = NULL;
@@ -155,7 +162,6 @@ int printPostOrder(Position root) {
 
 int printLevelOrder(Position root) {
     if (root == NULL) {
-        printf("The tree is empty");
         return 1;
     }
 
@@ -217,7 +223,6 @@ Position minNode(Position root) {
 Position findElement(Position root, int element) {
     while (1) {
         if (root == NULL) {
-            printf("Element not found");
             return NULL;
         }
         else if (element < root->element) {
@@ -227,7 +232,6 @@ Position findElement(Position root, int element) {
             root = root->right;
         }
         else {
-            printf("Element %d found.\n", root->element);
             return root;
         }
     }

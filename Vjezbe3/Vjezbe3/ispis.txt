@@ -1,17 +1,9 @@
 
 ---------------------------------------
  ime: sime
- prezime: jarun
- god: 2002
+ prezime: vlaj
+ god: 2
 ---------------------------------------
  ime: karlo
- prezime: trogrlic
- god: 2003
----------------------------------------
- ime: toni
- prezime: radanovic
- god: 2003
----------------------------------------
- ime: petar
- prezime: metar
- god: 2003
+ prezime: k
+ god: 2

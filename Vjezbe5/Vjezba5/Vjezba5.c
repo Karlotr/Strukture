@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,6 +12,9 @@
 #define Fail_To_Open_File (NULL)
 #define Error_Calclating
 
+
+//5. Napisati program koji iz datoteke čita postfiks izraz i zatim korištenjem stoga računa
+//rezultat.Stog je potrebno realizirati preko vezane liste.
 
 struct _Stack;
 typedef struct _Stack* Position;
@@ -68,6 +71,8 @@ int CalculatePostfix(Position Head,char* Postfix) {
 		if (isdigit(currentChar) != 0)
 			Push(Head, currentChar - '0');
 		else {
+
+			// Vi ste mi predlozili da popam ovdje umjesto da u svakom "caseu" popam, ali nakon toga kod stalno izbacuje 0, sto mi totalno nije jasno pa sam ostavio orginalno koje radi
 			int first = 0;
 			int second = 0;
 			switch (currentChar)
@@ -78,13 +83,21 @@ int CalculatePostfix(Position Head,char* Postfix) {
 				if (first && second) {
 					Push(Head, first + second);
 				}
+				else {
+					printf("Wrong postfix");
+					return 0;
+				}
 				break;
 
 			case '-':
 				first = Pop(Head);
 				second = Pop(Head);
 				if (first && second) {
-					Push(Head, first - second);
+					Push(Head, second - first);
+				}
+				else {
+					printf("Wrong postfix");
+					return 0;
 				}
 				break;
 
@@ -94,6 +107,10 @@ int CalculatePostfix(Position Head,char* Postfix) {
 				if (first && second) {
 					Push(Head, first * second);
 				}
+				else {
+					printf("Wrong postfix");
+					return 0;
+				}
 				break;
 
 			case '/':
@@ -101,6 +118,10 @@ int CalculatePostfix(Position Head,char* Postfix) {
 				second = Pop(Head);
 				if (first && second) {
 					Push(Head, first / second);
+				}
+				else {
+					printf("Wrong postfix");
+					return 0;
 				}
 				break;
 			}

@@ -12,6 +12,11 @@
 //povratak u prethodni direktorij.Točnije program treba preko menija simulirati
 //korištenje DOS naredbi : 1 - "md", 2 - "cd dir", 3 - "cd..", 4 - "dir" i 5 – izlaz.
 
+
+
+// Stog nije korišten nego samo pokazivač "parent" umjesto stoga što je za mene osobno dosta pojednostavilo kod, na predavanju ste objasnili zašto ovaj nacin nije dobar ali ovo nije potpuno isto kao što ste govorili te izbjegava sve negativne stvari koje ste iznjeli.
+
+
 struct Folder;
 typedef struct Folder* Dir;
 typedef struct Folder {
@@ -85,6 +90,7 @@ int main() {
 		};
 	}
 
+	free(Root);
 	return 0;
 }
 

@@ -1,0 +1,8 @@
+﻿  Vjezbe3.c
+C:\Users\karlo\Desktop\Strukture\Vjezbe3\Vjezbe3\Vjezbe3.c(187): warning C4716: 'DeletePerson': must return a value
+C:\Users\karlo\Desktop\Strukture\Vjezbe3\Vjezbe3\Vjezbe3.c(230): warning C4716: 'AddEnd': must return a value
+C:\Users\karlo\Desktop\Strukture\Vjezbe3\Vjezbe3\Vjezbe3.c(241): warning C4716: 'Add': must return a value
+C:\Users\karlo\Desktop\Strukture\Vjezbe3\Vjezbe3\Vjezbe3.c(274): warning C4716: 'Print': must return a value
+C:\Users\karlo\Desktop\Strukture\Vjezbe3\Vjezbe3\Vjezbe3.c(253): warning C4716: 'AddAfter': must return a value
+C:\Users\karlo\Desktop\Strukture\Vjezbe3\Vjezbe3\Vjezbe3.c(265): warning C4716: 'AddBefore': must return a value
+  Vjezbe3.vcxproj -> C:\Users\karlo\Desktop\Strukture\Vjezbe3\x64\Debug\Vjezbe3.exe

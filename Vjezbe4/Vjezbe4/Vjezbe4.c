@@ -8,6 +8,12 @@
 #define FAILED_MEMORY_ALLOCATION (NULL)
 #define EMPTY_LISTS (-2)
 
+//4. Napisati program za zbrajanje i množenje polinoma.Koeficijenti i eksponenti se
+//čitaju iz datoteke.
+//Napomena: Eksponenti u datoteci nisu nužno sortirani.
+
+
+
 struct _Element;
 typedef struct _Element* Position;
 typedef struct _Element {
@@ -16,7 +22,6 @@ typedef struct _Element {
     Position next;
     Position prev;
 }Element;
-
 
 int AddElementToStart(Position Head, int coefficient, int exponent);
 int AddElementToEnd(Position Head, int coefficient, int exponent);
@@ -31,6 +36,7 @@ int ReadFromFile(Position Head1, Position Head2, char* filename);
 int PolyAddition(Position Head1, Position Head2, Position PoliRes);
 int AddElementSorted(Position Head, int coefficient, int exponent);
 int PolyMultiplication(Position Result, Position head1next, Position head2next);
+void ClearMemory(Position Head);
 
 Position AllocateMemory();
 Position FindElementByValue(Position Head, int coefficient, int exponent);
@@ -47,8 +53,24 @@ int main() {
     PolyMultiplication(&PoliRes2, headPoly1.next, headPoly2.next);
     PrintList(PoliRes1.next);
 
+    ClearMemory(&headPoly1);
+    ClearMemory(&headPoly2);
+    ClearMemory(&PoliRes1);
+    ClearMemory(&PoliRes2);
+
     return 0;
 }
+
+
+void ClearMemory(Position Head) {
+    Position current = Head->next;
+    while (current != NULL) {
+        Position temp = current;
+        current = current->next;
+        free(temp);
+    }
+}
+
 
 int AddElementSorted(Position Head, int coefficient, int exponent) {
     Position OriginalHead = Head;
@@ -155,6 +177,7 @@ int ReadFromFile(Position Head1, Position Head2, char* filename) {
             i++;
         }
     }
+    fclose(filepointer);
     return 1;
 }
 

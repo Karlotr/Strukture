@@ -1,4 +1,4 @@
 ﻿  Vjezba7.c
-C:\Users\karlo\Desktop\Strukture\Vjezbe7\Vjezbe7\Vjezba7.c(133,3): warning C4047: 'return': 'int' differs in levels of indirection from 'void *'
-C:\Users\karlo\Desktop\Strukture\Vjezbe7\Vjezbe7\Vjezba7.c(101): warning C4172: returning address of local variable or temporary: path
+C:\Users\karlo\Desktop\Strukture\Vjezbe7\Vjezbe7\Vjezba7.c(139,3): warning C4047: 'return': 'int' differs in levels of indirection from 'void *'
+C:\Users\karlo\Desktop\Strukture\Vjezbe7\Vjezbe7\Vjezba7.c(107): warning C4172: returning address of local variable or temporary: path
   Vjezbe7.vcxproj -> C:\Users\karlo\Desktop\Strukture\Vjezbe7\x64\Debug\Vjezbe7.exe

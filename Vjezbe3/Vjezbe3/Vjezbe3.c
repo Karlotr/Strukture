@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 
 #define FILE_NOT_OPENED (-1)
 #define MAX_LINE (1024)
@@ -8,76 +8,86 @@
 #include <stdio.h>
 #include <string.h>
 
+//3. Prethodnom zadatku dodati funkcije :
+//A.dinamički dodaje novi element iza određenog elementa,
+//B.dinamički dodaje novi element ispred određenog elementa,
+//C.sortira listu po prezimenima osoba,
+//D.upisuje listu u datoteku,
+//E.čita listu iz datoteke.
+
 struct _Person;
 typedef struct _Person* Poz;
-typedef struct  _Person{
-    char name[MAX_SIZE],surname[MAX_SIZE];
+typedef struct  _Person {
+    char name[MAX_SIZE], surname[MAX_SIZE];
     int god;
     Poz next;
 }_person;
 
-int Add(Poz P, char name[MAX_SIZE],char surname[MAX_SIZE],int god);
+int Add(Poz Head, char name[MAX_SIZE], char surname[MAX_SIZE], int god);
 //Dodavanje na pocetak
-int AddAfter(Poz P,char targetsurname[MAX_SIZE], char name[MAX_SIZE],char surname[MAX_SIZE],int god);
+int AddAfter(Poz Head, char targetsurname[MAX_SIZE], char name[MAX_SIZE], char surname[MAX_SIZE], int god);
 //Dodavanje nakon odredenog
-int AddBefore(Poz P,char targetsurname[MAX_SIZE], char name[MAX_SIZE],char surname[MAX_SIZE],int god);
+int AddBefore(Poz Head, char targetsurname[MAX_SIZE], char name[MAX_SIZE], char surname[MAX_SIZE], int god);
 //Dodavanje prije odredenog
-int Print(Poz P);
+int Print(Poz HeadNext);
 //Printanje cijele liste
-int AddEnd(Poz P, char name[MAX_SIZE],char surname[MAX_SIZE],int god);
+int AddEnd(Poz Head, char name[MAX_SIZE], char surname[MAX_SIZE], int god);
 //Dodavanje na kraj
-Poz Find(Poz P, char surname[MAX_SIZE]);
+Poz Find(Poz Head, char surname[MAX_SIZE]);
 //Trazenje po prezimenu
-Poz FindPrev(Poz P, char surname[MAX_SIZE]);
+Poz FindPrev(Poz Head, char surname[MAX_SIZE]);
 //Trazenje prethodnog po prezimenu
 int DeleteByPosition(Poz PrevLoc);
 //Brisanje unosom pozicije prethodnika
-int DeletePerson(Poz P, char surname[MAX_SIZE]);
+int DeletePerson(Poz Head, char surname[MAX_SIZE]);
 //Brisanje unosom prezimena
 Poz AllocateMemory();
 //Alociranje memorije
-int WriteInFile(Poz P);
+int WriteInFile(Poz Headnext);
+//Pise listu u dadoteku
+int ReadFromFile(Poz Head);
+//Ucitava listu iz dadoteke
+void ClearMemory(Poz Head);
 
-int main(){
+int main() {
     _person Head = { .next = NULL, .name = {0},.surname = {0}, .god = 0 };
 
 
-    // Add(&Head, "toni", "radanovic", 2003);
     // Add(&Head, "karlo", "trogrlic", 2003);
     // AddEnd(&Head, "petar", "metar", 2003);
     // AddBefore(&Head, "trogrlic", "sime", "jarun", 2002);
     // Print(Head.next);
-	// WriteInFile(Head.next);
+    // WriteInFile(Head.next);
 
     int toggle = 1;
     int odabir = 0;
-    char name[MAX_SIZE] = {0}, surname[MAX_SIZE] = {0}, target[MAX_SIZE] = {0};
+    char name[MAX_SIZE] = { 0 }, surname[MAX_SIZE] = { 0 }, target[MAX_SIZE] = { 0 };
     int god = 0;
-    while (toggle){
-        printf("Odaberite koju radnju zelite: \n 1. Dodavanje na pocetak\n 2. Dodavanje na kraj\n 3. Dodavanje nakon\n 4. Dodavanje ispred,\n 5. Brisanje\n 6. Ispis liste\n7. Zavrsi \n");
+    while (toggle) {
+        printf("Odaberite koju radnju zelite: \n 1. Dodavanje na pocetak\n 2. Dodavanje na kraj\n 3. Dodavanje nakon\n 4. Dodavanje ispred,\n 5. Brisanje\n 6. Ispis liste\n 7. Ispis liste u dadoteku\n 8. Ucitavanje liste iz dadoteke\n 9. Zavrsi \n");
         scanf("%d", &odabir);
-        if (odabir >= 1 && odabir <= 7){
+        if (odabir >= 1 && odabir <= 9) {
             switch (odabir)
             {
             case 1:
                 printf("format: IME PREZIME GODINA\n");
-                scanf("%s %s %d", name,surname,&god);
+                scanf("%s %s %d", name, surname, &god);
                 Add(&Head, name, surname, god);
                 break;
             case 2:
                 printf("format: IME PREZIME GODINA\n");
-                scanf("%s %s %d", name,surname,&god);
+                scanf("%s %s %d", name, surname, &god);
                 AddEnd(&Head, name, surname, god);
                 break;
             case 3:
                 printf("format: PREZIME_METE IME PREZIME GODINA\n");
-                scanf("%s %s %s %d", target,name,surname,&god);
-                AddAfter(&Head,target, name, surname, god);
+                scanf("%s %s %s %d", target, name, surname, &god);
+                AddAfter(&Head, target, name, surname, god);
                 break;
             case 4:
                 printf("format: PREZIME_METE IME PREZIME GODINA\n");
-                scanf("%s %s %s %d", target,name,surname,&god);
-                AddBefore(&Head,target, name, surname, god);
+                scanf("%s %s %s %d", target, name, surname, &god);
+                AddBefore(&Head, target, name, surname, god);
                 break;
             case 5:
                 printf("format: PREZIME\n");
@@ -88,135 +98,177 @@ int main(){
                 Print(Head.next);
                 break;
             case 7:
+                WriteInFile(Head.next);
+                break;
+            case 8:
+                ReadFromFile(&Head);
+                break;
+            case 9:
                 printf("Program zavrsen");
                 toggle = 0;
                 break;
-            
+
             default:
                 break;
 
             }
-        
-        }else{
+
+        }
+        else {
             printf("Pogresan unos pokusajte opet \n");
         }
         printf("\n------------------------------------------------------------------------\n------------------------------------------------------------------------\n");
     }
+    ClearMemory(&Head);
+    return 0;
+}
 
+void ClearMemory(Poz Head) {
+    Poz current = Head->next;
+    while (current != NULL) {
+        Poz temp = current;
+        current = current->next;
+        free(temp);
+    }
+}
+
+int WriteInFile(Poz Headnext) {
+    FILE* file;
+    file = fopen("ispis.txt", "w");
+    if (!file) {
+        printf("Error opening file for writing.\n");
+        return FILE_NOT_OPENED;
+    }
+
+    while (Headnext != NULL) {
+        fprintf(file, "\n---------------------------------------");
+        fprintf(file, "\n ime: %s\n prezime: %s\n god: %d", Headnext->name, Headnext->surname, Headnext->god);
+        Headnext = Headnext->next;
+    }
+
+    fclose(file);
+    return 0;
+}
+
+int ReadFromFile(Poz Head) {
+    FILE* file;
+    file = fopen("ispis.txt", "r");
+    if (!file) {
+        printf("Error opening file for reading.\n");
+        return FILE_NOT_OPENED;
+    }
+
+    char name[MAX_SIZE], surname[MAX_SIZE];
+    int god;
+
+    while (fscanf(file, "\n---------------------------------------\n ime: %s\n prezime: %s\n god: %d", name, surname, &god) == 3) {
+        AddEnd(Head, name, surname, god);
+    }
+
+    fclose(file);
+    return 0;
+}
+
+Poz AllocateMemory() {
+    Poz ToAllocate = NULL;
+    ToAllocate = (Poz)malloc(sizeof(_person));
+    if (!ToAllocate) {
+        printf("Neuspjesna alokacija memorije");
+        return NULL;
+    }
+    return ToAllocate;
+}
+
+int DeletePerson(Poz Head, char surname[MAX_SIZE]) {
+    Poz temp = NULL;
+    temp = FindPrev(Head, surname);
+    if (temp != NULL)
+        DeleteByPosition(temp);
+}
+
+int DeleteByPosition(Poz Head) {
+    Poz temp = NULL;
+    if (Head != NULL)
+    {
+        temp = Head->next;
+        Head->next = temp->next;
+        free(temp);
+    }
 
     return 0;
 }
 
-int WriteInFile(Poz P){
-	FILE *file;
-	file = fopen("ispis.txt", "w");
-	while(P != NULL){
-		fprintf(file,"\n---------------------------------------");
-        fprintf(file,"\n ime: %s\n prezime: %s\n god: %d", P->name, P->surname, P->god);
-		P = P->next;
-	}
+Poz Find(Poz Head, char surname[MAX_SIZE]) {
+    while (Head != NULL && strcmp(Head->surname, surname) != 0) {
+        Head = Head->next;
+    }
+    return Head;
 }
 
-Poz AllocateMemory(){
-    Poz q = NULL;
-    q = (Poz)malloc(sizeof(_person));
-    if (!q){
-        printf("Neuspjesna alokacija memorije");
+Poz FindPrev(Poz Head, char surname[MAX_SIZE]) {
+    while (Head->next != NULL && strcmp(Head->next->surname, surname) != 0) {
+        Head = Head->next;
+    }
+    if (Head->next == NULL)
         return NULL;
+    else
+        return Head;
+}
+
+int AddEnd(Poz Head, char name[MAX_SIZE], char surname[MAX_SIZE], int god) {
+    Poz ToBeAdded = NULL;
+    ToBeAdded = AllocateMemory();
+    strcpy(ToBeAdded->name, name);
+    strcpy(ToBeAdded->surname, surname);
+    ToBeAdded->god = god;
+
+    while (Head->next != NULL) {
+        Head = Head->next;
     }
-    return q;
+    ToBeAdded->next = Head->next;
+    Head->next = ToBeAdded;
 }
 
-int DeletePerson(Poz P, char surname[MAX_SIZE]){
-    Poz temp = NULL;
-    temp = FindPrev(P, surname);
-        if (temp != NULL)
-            DeleteByPosition(temp);
+int Add(Poz Head, char name[MAX_SIZE], char surname[MAX_SIZE], int god) {
+    Poz ToBeAdded = NULL;
+    ToBeAdded = AllocateMemory();
+    strcpy(ToBeAdded->name, name);
+    strcpy(ToBeAdded->surname, surname);
+    ToBeAdded->god = god;
+
+    ToBeAdded->next = Head->next;
+    Head->next = ToBeAdded;
 }
 
-int DeleteByPosition(Poz P) {
-     Poz temp;
-     if (P != NULL)
-     {
-         temp = P->next;
-         P->next = temp->next;
-         free(temp);
-     }
+int AddAfter(Poz Head, char targetsurname[MAX_SIZE], char name[MAX_SIZE], char surname[MAX_SIZE], int god) {
+    Head = Find(Head, targetsurname);
+    Poz ToBeAdded = NULL;
+    ToBeAdded = AllocateMemory();
+    strcpy(ToBeAdded->name, name);
+    strcpy(ToBeAdded->surname, surname);
+    ToBeAdded->god = god;
 
-     return 0;
+    ToBeAdded->next = Head->next;
+    Head->next = ToBeAdded;
 }
 
-Poz Find(Poz P, char surname[MAX_SIZE]){
-    while (P != NULL && strcmp(P->surname, surname) != 0){
-        P = P->next;
-    }
-    return P;
-}
+int AddBefore(Poz Head, char targetsurname[MAX_SIZE], char name[MAX_SIZE], char surname[MAX_SIZE], int god) {
+    Head = FindPrev(Head, targetsurname);
+    Poz ToBeAdded = NULL;
+    ToBeAdded = AllocateMemory();
+    strcpy(ToBeAdded->name, name);
+    strcpy(ToBeAdded->surname, surname);
+    ToBeAdded->god = god;
 
-Poz FindPrev(Poz P, char surname[MAX_SIZE]){
-    while (P->next != NULL && strcmp(P->next->surname, surname) != 0){
-         P = P->next;
-     }
-     if (P->next == NULL)
-         return NULL;
-     else
-         return P;
-}
-
-int AddEnd(Poz P, char name[MAX_SIZE],char surname[MAX_SIZE],int god){
-    Poz q = NULL;
-    q = AllocateMemory();
-    strcpy(q->name, name);
-    strcpy(q->surname, surname);
-    q->god = god;
-
-    while (P->next != NULL){
-        P = P->next;
-    }
-    q->next = P->next;
-    P->next = q;
-}
-
-int Add(Poz P, char name[MAX_SIZE],char surname[MAX_SIZE],int god){
-    Poz q = NULL;
-    q = AllocateMemory();
-    strcpy(q->name, name);
-    strcpy(q->surname, surname);
-    q->god = god;
-
-    q->next = P->next;
-    P->next = q;
-}
-
-int AddAfter(Poz P, char targetsurname[MAX_SIZE], char name[MAX_SIZE],char surname[MAX_SIZE],int god){
-	P = Find(P, targetsurname);
-    Poz q = NULL;
-    q = AllocateMemory();
-    strcpy(q->name, name);
-    strcpy(q->surname, surname);
-    q->god = god;
-
-    q->next = P->next;
-    P->next = q;
-}
-
-int AddBefore(Poz P, char targetsurname[MAX_SIZE], char name[MAX_SIZE],char surname[MAX_SIZE],int god){
-	P = FindPrev(P, targetsurname);
-    Poz q = NULL;
-    q = AllocateMemory();
-    strcpy(q->name, name);
-    strcpy(q->surname, surname);
-    q->god = god;
-
-    q->next = P->next;
-    P->next = q;
+    ToBeAdded->next = Head->next;
+    Head->next = ToBeAdded;
 }
 
 
-int Print(Poz P){
-    while(P != NULL){
+int Print(Poz Headnext) {
+    while (Headnext != NULL) {
         printf("\n---------------------------------------");
-        printf("\n ime: %s\n prezime: %s\n god: %d", P->name, P->surname, P->god);
-        P = P->next;
+        printf("\n ime: %s\n prezime: %s\n god: %d", Headnext->name, Headnext->surname, Headnext->god);
+        Headnext = Headnext->next;
     }
 }

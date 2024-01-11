@@ -1,5 +1,0 @@
-﻿  Test.c
-C:\Users\karlo\Documents\Prog\VjezbeZaKolokv\VjezbeZaKolokv\Test.c(67,3): warning C4047: 'return': 'int' differs in levels of indirection from 'void *'
-C:\Users\karlo\Documents\Prog\VjezbeZaKolokv\VjezbeZaKolokv\Test.c(75,4): warning C4047: 'return': 'int' differs in levels of indirection from 'void *'
-C:\Users\karlo\Documents\Prog\VjezbeZaKolokv\VjezbeZaKolokv\Test.c(94,3): warning C4047: 'return': 'int' differs in levels of indirection from 'void *'
-  VjezbeZaKolokv.vcxproj -> C:\Users\karlo\Documents\Prog\VjezbeZaKolokv\x64\Debug\VjezbeZaKolokv.exe

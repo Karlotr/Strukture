@@ -1,2 +1,3 @@
 ﻿  Vjezbe8.c
+C:\Users\karlo\Desktop\Strukture\Vježbe8\Vježbe8\Vjezbe8.c(117,13): warning C4047: 'return': 'Position' differs in levels of indirection from 'int'
   Vježbe8.vcxproj -> C:\Users\karlo\Desktop\Strukture\Vježbe8\x64\Debug\Vježbe8.exe

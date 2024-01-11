@@ -1,0 +1,5 @@
+﻿  Vjezba1.c
+C:\Users\karlo\Desktop\Strukture\Vjezbe1\Vjezbe1\Vjezba1.c(70,3): warning C4047: 'return': 'int' differs in levels of indirection from 'void *'
+C:\Users\karlo\Desktop\Strukture\Vjezbe1\Vjezbe1\Vjezba1.c(78,4): warning C4047: 'return': 'int' differs in levels of indirection from 'void *'
+C:\Users\karlo\Desktop\Strukture\Vjezbe1\Vjezbe1\Vjezba1.c(97,3): warning C4047: 'return': 'int' differs in levels of indirection from 'void *'
+  Vjezbe1.vcxproj -> C:\Users\karlo\Desktop\Strukture\Vjezbe1\x64\Debug\Vjezbe1.exe

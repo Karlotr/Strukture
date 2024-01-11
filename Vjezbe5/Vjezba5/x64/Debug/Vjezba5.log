@@ -1,6 +1,6 @@
 ﻿  Vjezba5.c
-C:\Users\karlo\Desktop\Strukture\Vjezba5\Vjezba5\Vjezba5.c(112,3): warning C4033: 'CalculatePostfix' must return a value
-C:\Users\karlo\Desktop\Strukture\Vjezba5\Vjezba5\Vjezba5.c(151,3): warning C4047: 'return': 'int' differs in levels of indirection from 'void *'
-C:\Users\karlo\Desktop\Strukture\Vjezba5\Vjezba5\Vjezba5.c(125): warning C4172: returning address of local variable or temporary: Buffer
-C:\Users\karlo\Desktop\Strukture\Vjezba5\Vjezba5\Vjezba5.c(115): warning C4715: 'CalculatePostfix': not all control paths return a value
-  Vjezba5.vcxproj -> C:\Users\karlo\Desktop\Strukture\Vjezba5\x64\Debug\Vjezba5.exe
+C:\Users\karlo\Desktop\Strukture\Vjezbe5\Vjezba5\Vjezba5.c(131,3): warning C4033: 'CalculatePostfix' must return a value
+C:\Users\karlo\Desktop\Strukture\Vjezbe5\Vjezba5\Vjezba5.c(170,3): warning C4047: 'return': 'int' differs in levels of indirection from 'void *'
+C:\Users\karlo\Desktop\Strukture\Vjezbe5\Vjezba5\Vjezba5.c(144): warning C4172: returning address of local variable or temporary: Buffer
+C:\Users\karlo\Desktop\Strukture\Vjezbe5\Vjezba5\Vjezba5.c(134): warning C4715: 'CalculatePostfix': not all control paths return a value
+  Vjezba5.vcxproj -> C:\Users\karlo\Desktop\Strukture\Vjezbe5\x64\Debug\Vjezba5.exe
