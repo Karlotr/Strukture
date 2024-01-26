@@ -1,0 +1,3 @@
+﻿  FileName.c
+C:\Users\karlo\Desktop\Strukture\Vjezbe10\Vjezbe10\FileName.c(106): warning C4172: returning address of local variable or temporary: Head
+  Vjezbe10.vcxproj -> C:\Users\karlo\Desktop\Strukture\Vjezbe10\x64\Debug\Vjezbe10.exe
