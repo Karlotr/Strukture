@@ -1,0 +1,8 @@
+#MEMBER
+Jure_Simic
+#ENDMEMBER
+#MEMBER
+Karlo_Trogrlic
+#BOOK
+Pregovor
+#ENDMEMBER
